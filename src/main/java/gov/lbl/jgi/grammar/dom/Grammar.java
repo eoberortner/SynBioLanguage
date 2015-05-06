@@ -47,10 +47,11 @@ public final class Grammar
         for (ProductionRule p: productions) {
             nonterminals.add(p.getNonterminal());
             for (Symbol s: p.getProduction()) {
-                if (s instanceof Nonterminal)
+                if (s instanceof Nonterminal) {
                     nonterminals.add((Nonterminal) s);
-                else // s instanceof Terminal
+                } else  { // s instanceof Terminal
                     terminals.add((Terminal) s);
+                }
             }
         }
 

@@ -50,5 +50,14 @@ public class EnumeratorTest {
 		assertTrue(((Terminal)sentence.get(0)).isTerminal());
 		assertTrue(((Terminal)sentence.get(0)).getName() == "t1");
 	}
+	
+	
+	@Test
+	public void testSpecifyGrammar() {
+		String script = "S --> t1";
+		
+		Enumerator.enumerate(script);
+		
+	}
 
 }

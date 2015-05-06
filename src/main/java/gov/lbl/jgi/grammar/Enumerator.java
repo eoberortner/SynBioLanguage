@@ -5,9 +5,15 @@ import gov.lbl.jgi.grammar.dom.Nonterminal;
 import gov.lbl.jgi.grammar.dom.ProductionRule;
 import gov.lbl.jgi.grammar.dom.Symbol;
 import gov.lbl.jgi.grammar.dom.Terminal;
+import gov.lbl.jgi.grammar.parser.SynBioCFGLexer;
+import gov.lbl.jgi.grammar.parser.SynBioCFGParser;
+import gov.lbl.jgi.grammar.parser.SynBioCFGParser.prog_return;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.CommonTokenStream;
 
 /**
  * This algorithm is inspired by:
@@ -25,6 +31,31 @@ import java.util.List;
  */
 public class Enumerator {
 
+	public static List<List<Symbol>> enumerate(String grammar) {
+	
+		/*
+		 * STEP I:
+		 * parse the grammar
+		 */
+		SynBioCFGLexer lexer = new SynBioCFGLexer(new ANTLRStringStream(grammar));
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+		
+		SynBioCFGParser parser = new SynBioCFGParser(tokens);
+		try {
+			prog_return prog = parser.prog();
+			
+			System.out.println("grammar: " + prog.grammar);
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
 	public static List<List<Symbol>> enumerate(Grammar grammar) {
 
 		/*
