@@ -32,29 +32,46 @@ import org.antlr.runtime.CommonTokenStream;
 public class Enumerator {
 
 	public static List<List<Symbol>> enumerate(String grammar) {
+
+		collectNonterminals(grammar);
+		
+		Grammar g = collectProductionRules(grammar);
+		
+		if(null != grammar) {
+			return enumerate(g);
+		}
+		
+		return null;		
+	}
 	
-		/*
-		 * STEP I:
-		 * parse the grammar
-		 */
+	private static void collectNonterminals(String grammar) {
 		SynBioCFGLexer lexer = new SynBioCFGLexer(new ANTLRStringStream(grammar));
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
-
 		
 		SynBioCFGParser parser = new SynBioCFGParser(tokens);
+		parser.PARSING_PHASE = SynBioCFGParser.ParsingPhases.COLLECT_NONTERMINALS;
 		try {
-			prog_return prog = parser.prog();
-			
-			System.out.println("grammar: " + prog.grammar);
-			
-			
+			parser.prog();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		return null;
 	}
 	
+	private static Grammar collectProductionRules(String grammar) {
+		SynBioCFGLexer lexer = new SynBioCFGLexer(new ANTLRStringStream(grammar));
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
+		
+		SynBioCFGParser parser = new SynBioCFGParser(tokens);
+		parser.PARSING_PHASE = SynBioCFGParser.ParsingPhases.COLLECT_PRODUCTION_RULES;
+		try {
+			prog_return ret = parser.prog();
+			
+			return ret.grammar;
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	public static List<List<Symbol>> enumerate(Grammar grammar) {
 
@@ -65,14 +82,13 @@ public class Enumerator {
 		 * for the time being, we assume the grammar IS in CNF
 		 */
 		Grammar cnfGrammar = transformToCNF(grammar);
-		System.out.println(cnfGrammar);
-
+		
 		/*
 		 * STEP II: ENUMERATION
 		 */
 		List<Symbol> symbols = new ArrayList<Symbol>();
 		symbols.add(cnfGrammar.getStartSymbol());
-		
+
 		List<List<Symbol>> sentences = new ArrayList<List<Symbol>>();
 		enumerate(cnfGrammar, symbols, 0, sentences);
 		

@@ -22,13 +22,24 @@ package gov.lbl.jgi.grammar.parser;
 }
 
 @members {
+
+/*---------------------------------------------------------------------
+ * MEMBER VARIABLES
+ *---------------------------------------------------------------------*/
+
+final SymbolTables symbols = SymbolTables.instantiate();
+public ParsingPhases PARSING_PHASE;
+
+public enum ParsingPhases {
+    COLLECT_NONTERMINALS, COLLECT_PRODUCTION_RULES
+}
+
 /*---------------------------------------------------------------------
  * METHODS FOR ERROR REPORTING
  *---------------------------------------------------------------------*/
 private static final String NL = System.getProperty("line.separator");
 
 final boolean DEBUG_MODE = true;
-
 public void printDebug(Object message) {
     if (DEBUG_MODE) {
         int line = input.LT(-1).getLine();
@@ -56,20 +67,54 @@ public void reportError(RecognitionException re) {
 }
 
 
-prog
+prog 
 	returns[Grammar grammar]
-	:	(productionRule)* EOF
+	:	(productionRule)* {
+if(this.PARSING_PHASE == ParsingPhases.COLLECT_PRODUCTION_RULES) {	
+    $grammar = new Grammar(
+                    this.symbols.getProductionRules(), 
+                    this.symbols.getStartSymbol());
+}	
+	}	EOF
 	;
 
 productionRule
-	:	lhs ARROW rhs
+	:	nt=lhs {
+if(this.PARSING_PHASE == ParsingPhases.COLLECT_NONTERMINALS) {
+    this.symbols.put($nt.nt);
+}	
+	}	ARROW los=rhs {
+if(this.PARSING_PHASE == ParsingPhases.COLLECT_PRODUCTION_RULES) {	
+    this.symbols.put($nt.nt, $los.rhsSymbols);	
+}
+	}
 	;
 
-lhs	:	ID	
+lhs	
+	returns [Nonterminal nt]
+	:	ID	{
+$nt = new Nonterminal($ID.text);	
+	}
 	;
 
-rhs	:	ID rhs
-	|	ID ALTERNATIVE rhs
+rhs	
+	returns [List<Symbol> rhsSymbols]
+@init {
+$rhsSymbols = new ArrayList<Symbol>();
+}	
+	:	ID {
+if(this.PARSING_PHASE == ParsingPhases.COLLECT_PRODUCTION_RULES) {	
+    $rhsSymbols.add(
+        this.symbols.get($ID.text));	
+}
+	}	r=rhs {
+if(this.PARSING_PHASE == ParsingPhases.COLLECT_PRODUCTION_RULES) {	
+    if(null != $r.rhsSymbols) {
+        $rhsSymbols.addAll(
+                $r.rhsSymbols);	
+    }
+}
+}
 	|
 	;
 	

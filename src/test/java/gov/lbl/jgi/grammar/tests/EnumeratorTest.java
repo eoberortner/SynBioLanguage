@@ -11,10 +11,35 @@ import gov.lbl.jgi.grammar.dom.Nonterminal;
 import gov.lbl.jgi.grammar.dom.ProductionRule;
 import gov.lbl.jgi.grammar.dom.Symbol;
 import gov.lbl.jgi.grammar.dom.Terminal;
+import gov.lbl.jgi.grammar.parser.SymbolTables;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 public class EnumeratorTest {
+
+	private SymbolTables st;
+	
+	@Before
+	public void setUp() 
+			throws Exception {
+		
+//		this.st = SymbolTables.instantiate();
+		
+	}
+
+	@After
+	public void tearDown() 
+			throws Exception {
+		
+		SymbolTables.instantiate().clear();
+//		if(null != this.st) {
+//			this.st.clear();
+//			this.st = null;
+//		}
+		
+	}
 
 	@Test
 	public void testEnumerate_OneTerminal() {

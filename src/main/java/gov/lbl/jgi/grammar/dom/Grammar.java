@@ -64,7 +64,7 @@ public final class Grammar
      * @return The start symbol of the grammar.
      */
     public Nonterminal getStartSymbol() {
-        return start;
+        return this.start;
     }
 
     /**

@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g 2015-05-06 15:48:59
+// $ANTLR 3.5.1 /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g 2015-05-06 21:34:09
 
 package gov.lbl.jgi.grammar.parser;
 
@@ -84,8 +84,8 @@ public class SynBioCFGLexer extends Lexer {
 		try {
 			int _type = ID;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:77:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:77:7: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:122:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:122:7: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			{
 			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 				input.consume();
@@ -95,7 +95,7 @@ public class SynBioCFGLexer extends Lexer {
 				recover(mse);
 				throw mse;
 			}
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:77:31: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:122:31: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -140,7 +140,7 @@ public class SynBioCFGLexer extends Lexer {
 		try {
 			int _type = COMMENT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:81:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:126:5: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' | '/*' ( options {greedy=false; } : . )* '*/' )
 			int alt5=2;
 			int LA5_0 = input.LA(1);
 			if ( (LA5_0=='/') ) {
@@ -174,11 +174,11 @@ public class SynBioCFGLexer extends Lexer {
 
 			switch (alt5) {
 				case 1 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:81:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:126:9: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
 					{
 					match("//"); 
 
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:81:14: (~ ( '\\n' | '\\r' ) )*
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:126:14: (~ ( '\\n' | '\\r' ) )*
 					loop2:
 					while (true) {
 						int alt2=2;
@@ -207,7 +207,7 @@ public class SynBioCFGLexer extends Lexer {
 						}
 					}
 
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:81:28: ( '\\r' )?
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:126:28: ( '\\r' )?
 					int alt3=2;
 					int LA3_0 = input.LA(1);
 					if ( (LA3_0=='\r') ) {
@@ -215,7 +215,7 @@ public class SynBioCFGLexer extends Lexer {
 					}
 					switch (alt3) {
 						case 1 :
-							// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:81:28: '\\r'
+							// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:126:28: '\\r'
 							{
 							match('\r'); 
 							}
@@ -228,11 +228,11 @@ public class SynBioCFGLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:82:9: '/*' ( options {greedy=false; } : . )* '*/'
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:127:9: '/*' ( options {greedy=false; } : . )* '*/'
 					{
 					match("/*"); 
 
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:82:14: ( options {greedy=false; } : . )*
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:127:14: ( options {greedy=false; } : . )*
 					loop4:
 					while (true) {
 						int alt4=2;
@@ -253,7 +253,7 @@ public class SynBioCFGLexer extends Lexer {
 
 						switch (alt4) {
 						case 1 :
-							// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:82:42: .
+							// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:127:42: .
 							{
 							matchAny(); 
 							}
@@ -285,8 +285,8 @@ public class SynBioCFGLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:85:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:85:9: ( ' ' | '\\t' | '\\r' | '\\n' )
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:130:5: ( ( ' ' | '\\t' | '\\r' | '\\n' ) )
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:130:9: ( ' ' | '\\t' | '\\r' | '\\n' )
 			{
 			if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
 				input.consume();
@@ -313,11 +313,11 @@ public class SynBioCFGLexer extends Lexer {
 		try {
 			int _type = STRING;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:93:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:93:8: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:138:5: ( '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"' )
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:138:8: '\"' ( ESC_SEQ |~ ( '\\\\' | '\"' ) )* '\"'
 			{
 			match('\"'); 
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:93:12: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:138:12: ( ESC_SEQ |~ ( '\\\\' | '\"' ) )*
 			loop6:
 			while (true) {
 				int alt6=3;
@@ -331,14 +331,14 @@ public class SynBioCFGLexer extends Lexer {
 
 				switch (alt6) {
 				case 1 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:93:14: ESC_SEQ
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:138:14: ESC_SEQ
 					{
 					mESC_SEQ(); 
 
 					}
 					break;
 				case 2 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:93:24: ~ ( '\\\\' | '\"' )
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:138:24: ~ ( '\\\\' | '\"' )
 					{
 					if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
 						input.consume();
@@ -373,11 +373,11 @@ public class SynBioCFGLexer extends Lexer {
 		try {
 			int _type = CHAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:96:5: ( '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\'' )
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:96:8: '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\''
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:141:5: ( '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\'' )
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:141:8: '\\'' ( ESC_SEQ |~ ( '\\'' | '\\\\' ) ) '\\''
 			{
 			match('\''); 
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:96:13: ( ESC_SEQ |~ ( '\\'' | '\\\\' ) )
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:141:13: ( ESC_SEQ |~ ( '\\'' | '\\\\' ) )
 			int alt7=2;
 			int LA7_0 = input.LA(1);
 			if ( (LA7_0=='\\') ) {
@@ -395,14 +395,14 @@ public class SynBioCFGLexer extends Lexer {
 
 			switch (alt7) {
 				case 1 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:96:15: ESC_SEQ
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:141:15: ESC_SEQ
 					{
 					mESC_SEQ(); 
 
 					}
 					break;
 				case 2 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:96:25: ~ ( '\\'' | '\\\\' )
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:141:25: ~ ( '\\'' | '\\\\' )
 					{
 					if ( (input.LA(1) >= '\u0000' && input.LA(1) <= '&')||(input.LA(1) >= '(' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
 						input.consume();
@@ -432,7 +432,7 @@ public class SynBioCFGLexer extends Lexer {
 	// $ANTLR start "HEX_DIGIT"
 	public final void mHEX_DIGIT() throws RecognitionException {
 		try {
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:101:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:146:11: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
 			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:
 			{
 			if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -455,7 +455,7 @@ public class SynBioCFGLexer extends Lexer {
 	// $ANTLR start "ESC_SEQ"
 	public final void mESC_SEQ() throws RecognitionException {
 		try {
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:105:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:150:5: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | UNICODE_ESC | OCTAL_ESC )
 			int alt8=3;
 			int LA8_0 = input.LA(1);
 			if ( (LA8_0=='\\') ) {
@@ -510,7 +510,7 @@ public class SynBioCFGLexer extends Lexer {
 
 			switch (alt8) {
 				case 1 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:105:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:150:9: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
 					{
 					match('\\'); 
 					if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -524,14 +524,14 @@ public class SynBioCFGLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:106:9: UNICODE_ESC
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:151:9: UNICODE_ESC
 					{
 					mUNICODE_ESC(); 
 
 					}
 					break;
 				case 3 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:107:9: OCTAL_ESC
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:152:9: OCTAL_ESC
 					{
 					mOCTAL_ESC(); 
 
@@ -549,7 +549,7 @@ public class SynBioCFGLexer extends Lexer {
 	// $ANTLR start "OCTAL_ESC"
 	public final void mOCTAL_ESC() throws RecognitionException {
 		try {
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:112:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:157:5: ( '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) ( '0' .. '7' ) | '\\\\' ( '0' .. '7' ) )
 			int alt9=3;
 			int LA9_0 = input.LA(1);
 			if ( (LA9_0=='\\') ) {
@@ -607,7 +607,7 @@ public class SynBioCFGLexer extends Lexer {
 
 			switch (alt9) {
 				case 1 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:112:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:157:9: '\\\\' ( '0' .. '3' ) ( '0' .. '7' ) ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '3') ) {
@@ -637,7 +637,7 @@ public class SynBioCFGLexer extends Lexer {
 					}
 					break;
 				case 2 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:113:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:158:9: '\\\\' ( '0' .. '7' ) ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
@@ -659,7 +659,7 @@ public class SynBioCFGLexer extends Lexer {
 					}
 					break;
 				case 3 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:114:9: '\\\\' ( '0' .. '7' )
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:159:9: '\\\\' ( '0' .. '7' )
 					{
 					match('\\'); 
 					if ( (input.LA(1) >= '0' && input.LA(1) <= '7') ) {
@@ -684,8 +684,8 @@ public class SynBioCFGLexer extends Lexer {
 	// $ANTLR start "UNICODE_ESC"
 	public final void mUNICODE_ESC() throws RecognitionException {
 		try {
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:119:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:119:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:164:5: ( '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT )
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:164:9: '\\\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
 			{
 			match('\\'); 
 			match('u'); 

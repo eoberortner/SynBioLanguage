@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g 2015-05-06 15:48:59
+// $ANTLR 3.5.1 /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g 2015-05-06 21:34:09
 
 package gov.lbl.jgi.grammar.parser;
 
@@ -60,13 +60,24 @@ public class SynBioCFGParser extends Parser {
 	@Override public String getGrammarFileName() { return "/Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g"; }
 
 
+
+	/*---------------------------------------------------------------------
+	 * MEMBER VARIABLES
+	 *---------------------------------------------------------------------*/
+
+	final SymbolTables symbols = SymbolTables.instantiate();
+	public ParsingPhases PARSING_PHASE;
+
+	public enum ParsingPhases {
+	    COLLECT_NONTERMINALS, COLLECT_PRODUCTION_RULES
+	}
+
 	/*---------------------------------------------------------------------
 	 * METHODS FOR ERROR REPORTING
 	 *---------------------------------------------------------------------*/
 	private static final String NL = System.getProperty("line.separator");
 
 	final boolean DEBUG_MODE = true;
-
 	public void printDebug(Object message) {
 	    if (DEBUG_MODE) {
 	        int line = input.LT(-1).getLine();
@@ -102,7 +113,7 @@ public class SynBioCFGParser extends Parser {
 
 
 	// $ANTLR start "prog"
-	// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:59:1: prog returns [Grammar grammar] : ( productionRule )* EOF ;
+	// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:70:1: prog returns [Grammar grammar] : ( productionRule )* EOF ;
 	public final SynBioCFGParser.prog_return prog() throws RecognitionException {
 		SynBioCFGParser.prog_return retval = new SynBioCFGParser.prog_return();
 		retval.start = input.LT(1);
@@ -115,13 +126,13 @@ public class SynBioCFGParser extends Parser {
 		Object EOF2_tree=null;
 
 		try {
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:61:2: ( ( productionRule )* EOF )
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:61:4: ( productionRule )* EOF
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:72:2: ( ( productionRule )* EOF )
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:72:4: ( productionRule )* EOF
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:61:4: ( productionRule )*
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:72:4: ( productionRule )*
 			loop1:
 			while (true) {
 				int alt1=2;
@@ -132,9 +143,9 @@ public class SynBioCFGParser extends Parser {
 
 				switch (alt1) {
 				case 1 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:61:5: productionRule
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:72:5: productionRule
 					{
-					pushFollow(FOLLOW_productionRule_in_prog78);
+					pushFollow(FOLLOW_productionRule_in_prog79);
 					productionRule1=productionRule();
 					state._fsp--;
 
@@ -148,7 +159,14 @@ public class SynBioCFGParser extends Parser {
 				}
 			}
 
-			EOF2=(Token)match(input,EOF,FOLLOW_EOF_in_prog82); 
+
+			if(this.PARSING_PHASE == ParsingPhases.COLLECT_PRODUCTION_RULES) {	
+			    retval.grammar = new Grammar(
+			                    this.symbols.getProductionRules(), 
+			                    this.symbols.getStartSymbol());
+			}	
+				
+			EOF2=(Token)match(input,EOF,FOLLOW_EOF_in_prog85); 
 			EOF2_tree = (Object)adaptor.create(EOF2);
 			adaptor.addChild(root_0, EOF2_tree);
 
@@ -181,42 +199,52 @@ public class SynBioCFGParser extends Parser {
 
 
 	// $ANTLR start "productionRule"
-	// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:64:1: productionRule : lhs ARROW rhs ;
+	// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:81:1: productionRule : nt= lhs ARROW los= rhs ;
 	public final SynBioCFGParser.productionRule_return productionRule() throws RecognitionException {
 		SynBioCFGParser.productionRule_return retval = new SynBioCFGParser.productionRule_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token ARROW4=null;
-		ParserRuleReturnScope lhs3 =null;
-		ParserRuleReturnScope rhs5 =null;
+		Token ARROW3=null;
+		ParserRuleReturnScope nt =null;
+		ParserRuleReturnScope los =null;
 
-		Object ARROW4_tree=null;
+		Object ARROW3_tree=null;
 
 		try {
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:65:2: ( lhs ARROW rhs )
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:65:4: lhs ARROW rhs
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:82:2: (nt= lhs ARROW los= rhs )
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:82:4: nt= lhs ARROW los= rhs
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			pushFollow(FOLLOW_lhs_in_productionRule93);
-			lhs3=lhs();
+			pushFollow(FOLLOW_lhs_in_productionRule98);
+			nt=lhs();
 			state._fsp--;
 
-			adaptor.addChild(root_0, lhs3.getTree());
+			adaptor.addChild(root_0, nt.getTree());
 
-			ARROW4=(Token)match(input,ARROW,FOLLOW_ARROW_in_productionRule95); 
-			ARROW4_tree = (Object)adaptor.create(ARROW4);
-			adaptor.addChild(root_0, ARROW4_tree);
 
-			pushFollow(FOLLOW_rhs_in_productionRule97);
-			rhs5=rhs();
+			if(this.PARSING_PHASE == ParsingPhases.COLLECT_NONTERMINALS) {
+			    this.symbols.put((nt!=null?((SynBioCFGParser.lhs_return)nt).nt:null));
+			}	
+				
+			ARROW3=(Token)match(input,ARROW,FOLLOW_ARROW_in_productionRule102); 
+			ARROW3_tree = (Object)adaptor.create(ARROW3);
+			adaptor.addChild(root_0, ARROW3_tree);
+
+			pushFollow(FOLLOW_rhs_in_productionRule106);
+			los=rhs();
 			state._fsp--;
 
-			adaptor.addChild(root_0, rhs5.getTree());
+			adaptor.addChild(root_0, los.getTree());
 
+
+			if(this.PARSING_PHASE == ParsingPhases.COLLECT_PRODUCTION_RULES) {	
+			    this.symbols.put((nt!=null?((SynBioCFGParser.lhs_return)nt).nt:null), (los!=null?((SynBioCFGParser.rhs_return)los).rhsSymbols:null));	
+			}
+				
 			}
 
 			retval.stop = input.LT(-1);
@@ -239,6 +267,7 @@ public class SynBioCFGParser extends Parser {
 
 
 	public static class lhs_return extends ParserRuleReturnScope {
+		public Nonterminal nt;
 		Object tree;
 		@Override
 		public Object getTree() { return tree; }
@@ -246,28 +275,31 @@ public class SynBioCFGParser extends Parser {
 
 
 	// $ANTLR start "lhs"
-	// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:68:1: lhs : ID ;
+	// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:93:1: lhs returns [Nonterminal nt] : ID ;
 	public final SynBioCFGParser.lhs_return lhs() throws RecognitionException {
 		SynBioCFGParser.lhs_return retval = new SynBioCFGParser.lhs_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token ID6=null;
+		Token ID4=null;
 
-		Object ID6_tree=null;
+		Object ID4_tree=null;
 
 		try {
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:68:5: ( ID )
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:68:7: ID
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:95:2: ( ID )
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:95:4: ID
 			{
 			root_0 = (Object)adaptor.nil();
 
 
-			ID6=(Token)match(input,ID,FOLLOW_ID_in_lhs107); 
-			ID6_tree = (Object)adaptor.create(ID6);
-			adaptor.addChild(root_0, ID6_tree);
+			ID4=(Token)match(input,ID,FOLLOW_ID_in_lhs125); 
+			ID4_tree = (Object)adaptor.create(ID4);
+			adaptor.addChild(root_0, ID4_tree);
 
+
+			retval.nt = new Nonterminal((ID4!=null?ID4.getText():null));	
+				
 			}
 
 			retval.stop = input.LT(-1);
@@ -290,6 +322,7 @@ public class SynBioCFGParser extends Parser {
 
 
 	public static class rhs_return extends ParserRuleReturnScope {
+		public List<Symbol> rhsSymbols;
 		Object tree;
 		@Override
 		public Object getTree() { return tree; }
@@ -297,46 +330,35 @@ public class SynBioCFGParser extends Parser {
 
 
 	// $ANTLR start "rhs"
-	// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:71:1: rhs : ( ID rhs | ID ALTERNATIVE rhs |);
+	// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:100:1: rhs returns [List<Symbol> rhsSymbols] : ( ID r= rhs |);
 	public final SynBioCFGParser.rhs_return rhs() throws RecognitionException {
 		SynBioCFGParser.rhs_return retval = new SynBioCFGParser.rhs_return();
 		retval.start = input.LT(1);
 
 		Object root_0 = null;
 
-		Token ID7=null;
-		Token ID9=null;
-		Token ALTERNATIVE10=null;
-		ParserRuleReturnScope rhs8 =null;
-		ParserRuleReturnScope rhs11 =null;
+		Token ID5=null;
+		ParserRuleReturnScope r =null;
 
-		Object ID7_tree=null;
-		Object ID9_tree=null;
-		Object ALTERNATIVE10_tree=null;
+		Object ID5_tree=null;
+
+
+		retval.rhsSymbols = new ArrayList<Symbol>();
 
 		try {
-			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:71:5: ( ID rhs | ID ALTERNATIVE rhs |)
-			int alt2=3;
+			// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:105:2: ( ID r= rhs |)
+			int alt2=2;
 			int LA2_0 = input.LA(1);
 			if ( (LA2_0==ID) ) {
-				switch ( input.LA(2) ) {
-				case ALTERNATIVE:
-					{
-					alt2=2;
-					}
-					break;
-				case EOF:
-				case ID:
-					{
+				int LA2_1 = input.LA(2);
+				if ( (LA2_1==EOF||LA2_1==ID) ) {
 					alt2=1;
-					}
-					break;
-				case ARROW:
-					{
-					alt2=3;
-					}
-					break;
-				default:
+				}
+				else if ( (LA2_1==ARROW) ) {
+					alt2=2;
+				}
+
+				else {
 					int nvaeMark = input.mark();
 					try {
 						input.consume();
@@ -347,9 +369,10 @@ public class SynBioCFGParser extends Parser {
 						input.rewind(nvaeMark);
 					}
 				}
+
 			}
 			else if ( (LA2_0==EOF) ) {
-				alt2=3;
+				alt2=2;
 			}
 
 			else {
@@ -360,47 +383,39 @@ public class SynBioCFGParser extends Parser {
 
 			switch (alt2) {
 				case 1 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:71:7: ID rhs
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:105:4: ID r= rhs
 					{
 					root_0 = (Object)adaptor.nil();
 
 
-					ID7=(Token)match(input,ID,FOLLOW_ID_in_rhs118); 
-					ID7_tree = (Object)adaptor.create(ID7);
-					adaptor.addChild(root_0, ID7_tree);
+					ID5=(Token)match(input,ID,FOLLOW_ID_in_rhs150); 
+					ID5_tree = (Object)adaptor.create(ID5);
+					adaptor.addChild(root_0, ID5_tree);
 
-					pushFollow(FOLLOW_rhs_in_rhs120);
-					rhs8=rhs();
+
+					if(this.PARSING_PHASE == ParsingPhases.COLLECT_PRODUCTION_RULES) {	
+					    retval.rhsSymbols.add(
+					        this.symbols.get((ID5!=null?ID5.getText():null)));	
+					}
+						
+					pushFollow(FOLLOW_rhs_in_rhs156);
+					r=rhs();
 					state._fsp--;
 
-					adaptor.addChild(root_0, rhs8.getTree());
+					adaptor.addChild(root_0, r.getTree());
+
+
+					if(this.PARSING_PHASE == ParsingPhases.COLLECT_PRODUCTION_RULES) {	
+					    if(null != (r!=null?((SynBioCFGParser.rhs_return)r).rhsSymbols:null)) {
+					        retval.rhsSymbols.addAll(
+					                (r!=null?((SynBioCFGParser.rhs_return)r).rhsSymbols:null));	
+					    }
+					}
 
 					}
 					break;
 				case 2 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:72:4: ID ALTERNATIVE rhs
-					{
-					root_0 = (Object)adaptor.nil();
-
-
-					ID9=(Token)match(input,ID,FOLLOW_ID_in_rhs125); 
-					ID9_tree = (Object)adaptor.create(ID9);
-					adaptor.addChild(root_0, ID9_tree);
-
-					ALTERNATIVE10=(Token)match(input,ALTERNATIVE,FOLLOW_ALTERNATIVE_in_rhs127); 
-					ALTERNATIVE10_tree = (Object)adaptor.create(ALTERNATIVE10);
-					adaptor.addChild(root_0, ALTERNATIVE10_tree);
-
-					pushFollow(FOLLOW_rhs_in_rhs129);
-					rhs11=rhs();
-					state._fsp--;
-
-					adaptor.addChild(root_0, rhs11.getTree());
-
-					}
-					break;
-				case 3 :
-					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:74:2: 
+					// /Users/eoberortner/Projects/JGI/Grammars/git/SynBioLanguage/grammar/SynBioCFG.g:119:2: 
 					{
 					root_0 = (Object)adaptor.nil();
 
@@ -431,15 +446,12 @@ public class SynBioCFGParser extends Parser {
 
 
 
-	public static final BitSet FOLLOW_productionRule_in_prog78 = new BitSet(new long[]{0x0000000000000400L});
-	public static final BitSet FOLLOW_EOF_in_prog82 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_lhs_in_productionRule93 = new BitSet(new long[]{0x0000000000000020L});
-	public static final BitSet FOLLOW_ARROW_in_productionRule95 = new BitSet(new long[]{0x0000000000000400L});
-	public static final BitSet FOLLOW_rhs_in_productionRule97 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_lhs107 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_rhs118 = new BitSet(new long[]{0x0000000000000400L});
-	public static final BitSet FOLLOW_rhs_in_rhs120 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_ID_in_rhs125 = new BitSet(new long[]{0x0000000000000010L});
-	public static final BitSet FOLLOW_ALTERNATIVE_in_rhs127 = new BitSet(new long[]{0x0000000000000400L});
-	public static final BitSet FOLLOW_rhs_in_rhs129 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_productionRule_in_prog79 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_EOF_in_prog85 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_lhs_in_productionRule98 = new BitSet(new long[]{0x0000000000000020L});
+	public static final BitSet FOLLOW_ARROW_in_productionRule102 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_rhs_in_productionRule106 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_lhs125 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_ID_in_rhs150 = new BitSet(new long[]{0x0000000000000400L});
+	public static final BitSet FOLLOW_rhs_in_rhs156 = new BitSet(new long[]{0x0000000000000002L});
 }
