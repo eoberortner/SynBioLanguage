@@ -40,7 +40,7 @@ public class ParserTest {
 	@Test
 	public void testParsingPhases() {
 		
-		String grammar = "S --> t1";
+		String grammar = "S --> t1.";
 
 		// instantiate the lexer/parser based on the specified grammar
 		SynBioCFGLexer lexer = new SynBioCFGLexer(new ANTLRStringStream(grammar));

@@ -19,26 +19,10 @@ import org.junit.Test;
 
 public class EnumeratorTest {
 
-	private SymbolTables st;
-	
-	@Before
-	public void setUp() 
-			throws Exception {
-		
-//		this.st = SymbolTables.instantiate();
-		
-	}
-
 	@After
 	public void tearDown() 
 			throws Exception {
-		
 		SymbolTables.instantiate().clear();
-//		if(null != this.st) {
-//			this.st.clear();
-//			this.st = null;
-//		}
-		
 	}
 
 	@Test
@@ -79,10 +63,52 @@ public class EnumeratorTest {
 	
 	@Test
 	public void testSpecifyGrammar() {
-		String script = "S --> t1";
+		String script = "S --> t1.";
 		
-		Enumerator.enumerate(script);
+		List<List<Symbol>> sentences = Enumerator.enumerate(script);
+		assertTrue(null != sentences);
+		assertTrue(sentences.size() == 1);		
+	}
+	
+	@Test
+	public void testOneHierarchyGrammar() {
+		String script = "S --> NT. NT --> t1.";
 		
+		List<List<Symbol>> sentences = Enumerator.enumerate(script);
+		assertTrue(null != sentences);
+		assertTrue(sentences.size() == 1);	
+		
+		// get the sentence
+		List<Symbol> sentence = sentences.get(0);
+		assertTrue(null != sentence);
+		assertTrue(sentence.size() == 1);
 	}
 
+	@Test
+	public void testOneHierarchyGrammar_2words() {
+		String script = "S --> NT. NT --> t1 t2.";
+		
+		List<List<Symbol>> sentences = Enumerator.enumerate(script);
+		assertTrue(null != sentences);
+		assertTrue(sentences.size() == 1);	
+		
+		// get the sentence
+		List<Symbol> sentence = sentences.get(0);
+		assertTrue(null != sentence);
+		assertTrue(sentence.size() == 2);
+	}
+	
+	@Test
+	public void testOneLevelAlernatives() {
+		String script = "S --> t1 | t2.";
+		
+		List<List<Symbol>> sentences = Enumerator.enumerate(script);
+		assertTrue(null != sentences);
+		assertTrue(sentences.size() == 2);	
+
+		for(List<Symbol> sentence : sentences) {
+			assertTrue(null != sentence);
+			assertTrue(sentence.size() == 1);
+		}
+	}
 }

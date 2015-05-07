@@ -8,6 +8,7 @@ output=AST;
 tokens {
 	ALTERNATIVE 	= '|';
 	ARROW 		= '-->';
+	DOT		= '.';
 }
 
 
@@ -85,9 +86,14 @@ if(this.PARSING_PHASE == ParsingPhases.COLLECT_NONTERMINALS) {
 }	
 	}	ARROW los=rhs {
 if(this.PARSING_PHASE == ParsingPhases.COLLECT_PRODUCTION_RULES) {	
-    this.symbols.put($nt.nt, $los.rhsSymbols);	
+
+    List<List<Symbol>> rhsAlternatives = $los.rhsAlternatives;
+    
+    for(List<Symbol> alternative : rhsAlternatives) {
+        this.symbols.put($nt.nt, alternative);	
+    }
 }
-	}
+	}	DOT
 	;
 
 lhs	
@@ -98,24 +104,35 @@ $nt = new Nonterminal($ID.text);
 	;
 
 rhs	
-	returns [List<Symbol> rhsSymbols]
+	returns [List<List<Symbol>> rhsAlternatives]
+@init {
+$rhsAlternatives = new ArrayList<List<Symbol>>();
+}	
+	:	alt=rhs_alternative {
+if(this.PARSING_PHASE == ParsingPhases.COLLECT_PRODUCTION_RULES) {	
+    $rhsAlternatives.add(
+        $alt.rhsSymbols);	
+}
+	}	
+		(ALTERNATIVE r=rhs_alternative {
+if(this.PARSING_PHASE == ParsingPhases.COLLECT_PRODUCTION_RULES) {	
+    $rhsAlternatives.add(
+                $r.rhsSymbols);
+}	
+	}	)*
+	;
+
+rhs_alternative
+	returns[List<Symbol> rhsSymbols]	
 @init {
 $rhsSymbols = new ArrayList<Symbol>();
 }	
-	:	ID {
+	:	(ID {
 if(this.PARSING_PHASE == ParsingPhases.COLLECT_PRODUCTION_RULES) {	
     $rhsSymbols.add(
         this.symbols.get($ID.text));	
 }
-	}	r=rhs {
-if(this.PARSING_PHASE == ParsingPhases.COLLECT_PRODUCTION_RULES) {	
-    if(null != $r.rhsSymbols) {
-        $rhsSymbols.addAll(
-                $r.rhsSymbols);	
-    }
-}
-}
-	|
+	}	)+	
 	;
 	
 
