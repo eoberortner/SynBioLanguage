@@ -26,10 +26,13 @@ public class ToggleSwitch {
 		 * STEP I:
 		 * build a grammar
 		 */
-		Grammar g = buildToggleSwitchGrammar();		
-		Enumerator.enumerate(g);
-		
-		
+		Grammar grammar = buildToggleSwitchGrammar();		
+
+		/*
+		 * STEP II:
+		 * enumerate all designs based on the grammar
+		 */
+		Enumerator.enumerate(grammar);
 	}
 	
 	/**

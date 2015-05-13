@@ -111,4 +111,24 @@ public class EnumeratorTest {
 			assertTrue(sentence.size() == 1);
 		}
 	}
+
+	@Test
+	public void testSentencesOfDifferentLength() {
+		String script = "S --> t1 | t2 t3 | t4.";
+		
+		List<List<Symbol>> sentences = Enumerator.enumerate(script);
+		assertTrue(null != sentences);
+		assertTrue(sentences.size() == 3);
+		
+	}
+	
+	@Test
+	public void testTwoLevelAlternatives_SentencesOfDifferentLength() {
+		String script = "S --> N N. N --> t1 | t2 t3 | t4.";
+		
+		List<List<Symbol>> sentences = Enumerator.enumerate(script);
+		assertTrue(null != sentences);
+		
+	}
+
 }
